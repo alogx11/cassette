@@ -15,6 +15,7 @@ let song;
 let duration;
 let cassetteImg, reelImg;
 let font;
+let cassetteScale = 0.5;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -36,7 +37,6 @@ function draw() {
   textSize(20);
   textFont("Helvetica");
   text(position, 50, 50);
-  let cassetteScale = 0.5;
   image(
     cassetteImg,
     100,
@@ -48,4 +48,18 @@ function draw() {
   fill(120);
   textFont(font);
   text("sample text", 142, 140);
+  displayReel();
+}
+
+function displayReel() {
+  push();
+  imageMode(CENTER);
+  image(
+    reelImg,
+    230,
+    214,
+    reelImg.width * cassetteScale,
+    reelImg.height * cassetteScale
+  );
+  pop();
 }
