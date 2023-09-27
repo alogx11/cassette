@@ -16,6 +16,7 @@ let duration;
 let cassetteImg, reelImg;
 let font;
 let cassetteScale = 0.5;
+let angle = 0;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -49,15 +50,30 @@ function draw() {
   textFont(font);
   text("sample text", 142, 140);
   displayReel();
+  angle += 0.5;
 }
 
 function displayReel() {
   push();
   imageMode(CENTER);
+  translate(230, 214);
+  rotate(radians(angle));
   image(
     reelImg,
-    230,
-    214,
+    0,
+    0,
+    reelImg.width * cassetteScale,
+    reelImg.height * cassetteScale
+  );
+  pop();
+  push();
+  imageMode(CENTER);
+  translate(417.5, 214);
+  rotate(radians(angle));
+  image(
+    reelImg,
+    0,
+    0,
     reelImg.width * cassetteScale,
     reelImg.height * cassetteScale
   );
