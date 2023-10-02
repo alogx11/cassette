@@ -1,23 +1,10 @@
-﻿/*
-TODO:
-Button Object
-
-Enum cassettee states
-
-flipButton()
-
-Modifier Boutton()
-
-cassettee object ?
-*/
-
-let song;
+﻿let song;
 let duration;
 let cassetteImg, reelImg;
 let font;
 let cassetteScale = 0.5;
 let angle = 0;
-let button;
+let sideButton;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -30,6 +17,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   duration = song.duration;
+  sideButton = new Button(133, 253, 31);
 }
 
 function draw() {
@@ -53,7 +41,9 @@ function draw() {
   text("sample text", 142, 140);
   displayReel();
   angle += 0.5;
+  sideButton.display();
 }
+
 function displayMagTape() {
   fill(0);
   ellipse(230, 214, 150, 150);
@@ -88,4 +78,23 @@ function displayReel() {
     reelImg.height * cassetteScale
   );
   pop();
+}
+
+class Button {
+  constructor(x, y, width) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.toggled = false;
+  }
+
+  display() {
+    strokeWeight(3);
+    stroke(255, 0, 0);
+    noFill();
+    rect(this.x, this.y, this.width, this.width);
+  }
+  isToggled() {
+    if (mouseX) this.toggled != this.toggled;
+  }
 }
