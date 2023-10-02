@@ -17,6 +17,7 @@ let cassetteImg, reelImg;
 let font;
 let cassetteScale = 0.5;
 let angle = 0;
+let button;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -38,6 +39,7 @@ function draw() {
   textSize(20);
   textFont("Helvetica");
   text(position, 50, 50);
+  displayMagTape();
   image(
     cassetteImg,
     100,
@@ -51,6 +53,14 @@ function draw() {
   text("sample text", 142, 140);
   displayReel();
   angle += 0.5;
+}
+function displayMagTape() {
+  fill(0);
+  ellipse(230, 214, 150, 150);
+  ellipse(417.5, 214, 150, 150);
+  fill(255);
+  ellipse(230, 214, 50, 50);
+  ellipse(417.5, 214, 50, 50);
 }
 
 function displayReel() {
