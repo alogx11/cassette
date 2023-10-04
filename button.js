@@ -18,3 +18,14 @@ class Button {
     if (mouseX) this.toggled != this.toggled;
   }
 }
+
+class ImageButton extends Button {
+  constructor(img, x, y, width) {
+    super(x, y);
+    this.img = img;
+  }
+
+  display() {
+    image(this.img, this.x, this.y);
+  }
+}
