@@ -1,11 +1,12 @@
 class Button {
-  constructor(x, y, width, scale) {
+  constructor(x, y, width, scale, handler) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = this.width * 0.9;
     this.scale = scale;
     this.toggled = false;
+    this.handler = handler;
   }
 
   display() {
@@ -24,6 +25,10 @@ class Button {
       Math.abs(this.y - mouseY) <= this.height / 2
     ) {
       print("toggle !");
+      if (this.handler) {
+        // check if we have a handler function.
+        this.handler(); // perform button function
+      }
       this.toggled != this.toggled;
       return true;
     }
