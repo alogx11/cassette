@@ -3,9 +3,9 @@ let duration;
 let cassetteImg, reelImg;
 let font;
 let scale = 1;
-let angle = 0;
 let sideButton;
 let cassetteX, cassetteY;
+let lReel, rReel;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -23,12 +23,14 @@ function setup() {
   sideButton = new Button(133, 253, 31);
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
-  print("center x: " + cassetteX + " center y: " + cassetteY);
-  print(
-    "width: " +
-      cassetteImg.width * scale +
-      " height: " +
-      cassetteImg.height * scale
+  lReel = new Reel(
+    cassetteX,
+    cassetteY,
+    reelImg,
+    scale,
+    cassetteImg.width,
+    cassetteImg.height,
+    true
   );
 }
 
@@ -39,7 +41,8 @@ function draw() {
   textSize(20); //print moues coordinates
   textFont("Helvetica");
   text(position, 50, 50);
-  displayMagTape();
+  lReel.display(0.5);
+
   image(
     cassetteImg,
     windowWidth / 2,
@@ -55,59 +58,5 @@ function draw() {
     cassetteX - cassetteImg.width * scale * 0.33,
     cassetteY - cassetteImg.height * scale * 0.33
   );
-  displayReel();
-  angle += 0.5;
   sideButton.display();
-}
-
-function displayMagTape() {
-  // tape circle
-  fill(0);
-  print(cassetteX - cassetteImg.width * 0.21 * scale);
-  ellipse(
-    cassetteX - cassetteImg.width * 0.21 * scale,
-    cassetteY - cassetteImg.height * 0.077 * scale,
-    reelImg.width * 3 * scale,
-    reelImg.width * 3 * scale
-  );
-  ellipse(
-    cassetteX + cassetteImg.width * 0.21 * scale,
-    cassetteY - cassetteImg.height * 0.077 * scale,
-    reelImg.width * 3 * scale,
-    reelImg.width * 3 * scale
-  );
-  // white circle in the middle of tape
-  fill(255);
-  ellipse(
-    cassetteX - cassetteImg.width * 0.21 * scale,
-    cassetteY - cassetteImg.height * 0.077 * scale,
-    reelImg.width * scale,
-    reelImg.width * scale
-  );
-  ellipse(
-    cassetteX + cassetteImg.width * 0.21 * scale,
-    cassetteY - cassetteImg.height * 0.077 * scale,
-    reelImg.width * scale,
-    reelImg.width * scale
-  );
-}
-
-function displayReel() {
-  push();
-  print(cassetteX - cassetteImg.width * 0.21);
-  translate(
-    cassetteX - cassetteImg.width * scale * 0.21,
-    cassetteY - cassetteImg.height * 0.077 * scale
-  );
-  rotate(radians(angle));
-  image(reelImg, 0, 0, reelImg.width * scale, reelImg.height * scale);
-  pop();
-  push();
-  translate(
-    cassetteX + cassetteImg.width * scale * 0.21,
-    cassetteY - cassetteImg.height * 0.077 * scale
-  );
-  rotate(radians(angle));
-  image(reelImg, 0, 0, reelImg.width * scale, reelImg.height * scale);
-  pop();
 }
