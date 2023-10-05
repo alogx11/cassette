@@ -28,7 +28,8 @@ function setup() {
     cassetteX - cassetteImg.width * scale * 0.394,
     cassetteY + cassetteImg.height * scale * 0.126,
     cassetteImg.width * scale * 0.08,
-    scale
+    scale,
+    flipSide
   );
   lReel = new Reel(
     cassetteX,
@@ -85,7 +86,8 @@ function mousePressed() {
 }
 
 function flipSide() {
-  if (sideButton.state) {
+  print("flipping");
+  if (!sideButton.getState()) {
     sideA = false;
   } else {
     sideA = true;
@@ -97,7 +99,9 @@ function drawCassetteSide() {
   textAlign(CENTER);
   textFont("Helvetica");
   fill(255);
+  print(sideA ? "A" : "B");
   let side = sideA ? "A" : "B";
+  print(side);
   text(
     side,
     sideButton.getX(),

@@ -29,7 +29,7 @@ class Button {
         // check if we have a handler function.
         this.handler(); // perform button function
       }
-      this.toggled != this.toggled;
+      this.toggled = !this.toggled;
       return true;
     }
     return false;
