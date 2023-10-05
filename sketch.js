@@ -2,7 +2,7 @@
 let duration;
 let cassetteImg, reelImg;
 let font;
-let scale = 1;
+let scale = 0.75;
 let sideButton;
 let cassetteX, cassetteY;
 let lReel, rReel;
@@ -20,9 +20,15 @@ function setup() {
   rectMode(CENTER);
   imageMode(CENTER);
   duration = song.duration;
-  sideButton = new Button(133, 253, 31);
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
+  print(cassetteX + " " + cassetteY);
+  sideButton = new Button(
+    cassetteX - cassetteImg.width * scale * 0.394,
+    cassetteY + cassetteImg.height * scale * 0.126,
+    cassetteImg.width * scale * 0.08,
+    scale
+  );
   lReel = new Reel(
     cassetteX,
     cassetteY,
@@ -69,4 +75,8 @@ function draw() {
     cassetteY - cassetteImg.height * scale * 0.33
   );
   sideButton.display();
+}
+
+function mousePressed() {
+  sideButton.isToggled();
 }
