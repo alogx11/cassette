@@ -1,6 +1,6 @@
 ﻿const scale = 1;
 
-let song;
+let songA;
 let duration;
 let cassetteImg, reelImg;
 let font;
@@ -8,12 +8,27 @@ let sideButton;
 let cassetteX, cassetteY;
 let lReel, rReel;
 let sideA;
+let songControls = new Array(4);
+let controlImg = new Array(4);
 
 function preload() {
-  song = loadSound("assets/From-the-Start.mp3");
+  // load songs
+  songA = loadSound("assets/From-the-Start.mp3");
+  // load cassette assets
   cassetteImg = loadImage("assets/cassette.png");
-  font = loadFont("assets/MIXTMK_T.ttf");
   reelImg = loadImage("assets/wheelorange.png");
+  rewindButton = loadImage("assets/rewindbutton.png");
+  stopButton = loadImage("assets/stopbutton.png");
+  playButton = loadImage("assets/playbutton.png");
+  forwardButton = loadImage("assets/forwardbutton.png");
+  controlImg = {
+    rwdButton,
+    stopButton,
+    playButton,
+    fwdButton,
+  };
+  // load font
+  font = loadFont("assets/MIXTMK_T.ttf");
 }
 
 function setup() {
@@ -21,10 +36,11 @@ function setup() {
   background(0);
   rectMode(CENTER);
   imageMode(CENTER);
-  duration = song.duration;
+  duration = songA.duration;
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
   print(cassetteX + " " + cassetteY);
+  // create side button
   sideButton = new Button(
     cassetteX - cassetteImg.width * scale * 0.394,
     cassetteY + cassetteImg.height * scale * 0.126,
@@ -32,6 +48,7 @@ function setup() {
     scale,
     flipSide
   );
+  // create real objects
   lReel = new Reel(
     cassetteX,
     cassetteY,
@@ -51,6 +68,37 @@ function setup() {
     false
   );
   sideA = !sideButton.getState();
+  // create imgButtons
+
+  // rwdButton = new ImageButton(
+  //   controlImg[0],
+  //   420,
+  //   560,
+  //   rewindImg.width / 6,
+  //   rewindImg.height / 6
+  // );
+  // stopButton = new ImageButton(
+  //   controlImg[1],
+  //   510,
+  //   560,
+  //   stopImg.width / 6,
+  //   stopImg.height / 6
+  // );
+  // playButton = new ImageButton(
+  //   controlImg[2],
+  //   590,
+  //   560,
+  //   playImg.width / 6,
+  //   playImg.height / 6,
+  //   play
+  // );
+  // fwdButton = new ImageButton(
+  //   controlImg[3],
+  //   680,
+  //   560,
+  //   fwdImg.width / 6,
+  //   fwdImg.height / 6
+  // );
 }
 
 function draw() {
