@@ -6,6 +6,7 @@ let scale = 0.75;
 let sideButton;
 let cassetteX, cassetteY;
 let lReel, rReel;
+let sideA;
 
 function preload() {
   song = loadSound("assets/From-the-Start.mp3");
@@ -47,6 +48,7 @@ function setup() {
     cassetteImg.height,
     false
   );
+  sideA = !sideButton.getState();
 }
 
 function draw() {
@@ -71,12 +73,34 @@ function draw() {
   textFont(font);
   text(
     "sample text",
-    cassetteX - cassetteImg.width * scale * 0.33,
+    cassetteX - cassetteImg.width * scale * 0.25,
     cassetteY - cassetteImg.height * scale * 0.33
   );
   sideButton.display();
+  drawCassetteSide();
 }
 
 function mousePressed() {
   sideButton.isToggled();
+}
+
+function flipSide() {
+  if (sideButton.state) {
+    sideA = false;
+  } else {
+    sideA = true;
+  }
+}
+
+function drawCassetteSide() {
+  textSize(50 * scale);
+  textAlign(CENTER);
+  textFont("Helvetica");
+  fill(255);
+  let side = sideA ? "A" : "B";
+  text(
+    side,
+    sideButton.getX(),
+    sideButton.getY() + cassetteImg.height * scale * 0.03
+  );
 }

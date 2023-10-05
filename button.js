@@ -38,6 +38,14 @@ class Button {
   getState() {
     return this.toggled;
   }
+
+  getX() {
+    return this.x;
+  }
+
+  getY() {
+    return this.y;
+  }
 }
 
 class ImageButton extends Button {
