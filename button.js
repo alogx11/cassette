@@ -25,17 +25,17 @@ class Button {
       Math.abs(this.y - mouseY) <= this.height / 2
     ) {
       print("toggle !");
+      this.toggled = !this.toggled;
       if (this.handler) {
         // check if we have a handler function.
         this.handler(); // perform button function
       }
-      this.toggled = !this.toggled;
-      return true;
     }
-    return false;
+    return this.toggled;
   }
 
   getState() {
+    print(this.toggled);
     return this.toggled;
   }
 
@@ -49,12 +49,12 @@ class Button {
 }
 
 class ImageButton extends Button {
-  constructor(img, x, y, width, scale) {
-    super(x, y);
-    this.img = img;
+  constructor(image, x, y, w, h, handler) {
+    super(x, y, w, h, handler);
+    this.image = image;
   }
 
   display() {
-    image(this.img, this.x, this.y);
+    image(this.image, this.x, this.y, this.w, this.h);
   }
 }

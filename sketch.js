@@ -1,8 +1,9 @@
-﻿let song;
+﻿const scale = 1;
+
+let song;
 let duration;
 let cassetteImg, reelImg;
 let font;
-let scale = 0.75;
 let sideButton;
 let cassetteX, cassetteY;
 let lReel, rReel;
@@ -64,8 +65,8 @@ function draw() {
 
   image(
     cassetteImg,
-    windowWidth / 2,
-    windowHeight / 2,
+    cassetteX,
+    cassetteY,
     cassetteImg.width * scale,
     cassetteImg.height * scale
   );
@@ -87,11 +88,7 @@ function mousePressed() {
 
 function flipSide() {
   print("flipping");
-  if (!sideButton.getState()) {
-    sideA = false;
-  } else {
-    sideA = true;
-  }
+  sideA = !sideButton.getState();
 }
 
 function drawCassetteSide() {
@@ -99,9 +96,7 @@ function drawCassetteSide() {
   textAlign(CENTER);
   textFont("Helvetica");
   fill(255);
-  print(sideA ? "A" : "B");
   let side = sideA ? "A" : "B";
-  print(side);
   text(
     side,
     sideButton.getX(),
