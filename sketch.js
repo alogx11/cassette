@@ -32,6 +32,15 @@ function setup() {
     cassetteImg.height,
     true
   );
+  rReel = new Reel(
+    cassetteX,
+    cassetteY,
+    reelImg,
+    scale,
+    cassetteImg.width,
+    cassetteImg.height,
+    false
+  );
 }
 
 function draw() {
@@ -42,6 +51,7 @@ function draw() {
   textFont("Helvetica");
   text(position, 50, 50);
   lReel.display(0.5);
+  rReel.display(0.5);
 
   image(
     cassetteImg,
