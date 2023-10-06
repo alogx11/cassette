@@ -59,3 +59,16 @@ class ImageButton extends Button {
     image(this.image, this.x, this.y, this.width, this.height);
   }
 }
+
+class CircleButton extends Button {
+  display() {
+    strokeWeight(4);
+    stroke(255);
+    if (this.state) {
+      fill(255);
+    } else {
+      noFill();
+    }
+    ellipse(this.x, this.y, this.w, this.h);
+  }
+}

@@ -1,4 +1,4 @@
-﻿const scale = 0.75;
+﻿const scale = 1;
 
 let songA;
 let duration;
@@ -10,6 +10,8 @@ let lReel, rReel;
 let sideA;
 let songControls = new Array(4);
 let controlImg = new Array(4);
+let circleButtons = new Array(3);
+let labeledButtons = new Array(3);
 
 function preload() {
   // load songs
