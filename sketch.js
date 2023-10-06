@@ -17,10 +17,10 @@ function preload() {
   // load cassette assets
   cassetteImg = loadImage("assets/cassette.png");
   reelImg = loadImage("assets/wheelorange.png");
-  rewindButton = loadImage("assets/rewindbutton.png");
-  stopButton = loadImage("assets/stopbutton.png");
-  playButton = loadImage("assets/playbutton.png");
-  forwardButton = loadImage("assets/forwardbutton.png");
+  let rwdButton = loadImage("assets/rewindbutton.png");
+  let stopButton = loadImage("assets/stopbutton.png");
+  let playButton = loadImage("assets/playbutton.png");
+  let fwdButton = loadImage("assets/forwardbutton.png");
   controlImg = {
     rwdButton,
     stopButton,
