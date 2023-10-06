@@ -1,4 +1,4 @@
-﻿const scale = 1;
+﻿const scale = 0.75;
 
 let songA;
 let duration;
@@ -17,16 +17,11 @@ function preload() {
   // load cassette assets
   cassetteImg = loadImage("assets/cassette.png");
   reelImg = loadImage("assets/wheelorange.png");
-  let rwdButton = loadImage("assets/rewindbutton.png");
-  let stopButton = loadImage("assets/stopbutton.png");
-  let playButton = loadImage("assets/playbutton.png");
-  let fwdButton = loadImage("assets/forwardbutton.png");
-  controlImg = {
-    rwdButton,
-    stopButton,
-    playButton,
-    fwdButton,
-  };
+  // load button images
+  controlImg[0] = loadImage("assets/rewindbutton.png");
+  controlImg[1] = loadImage("assets/stopbutton.png");
+  controlImg[2] = loadImage("assets/playbutton.png");
+  controlImg[3] = loadImage("assets/forwardbutton.png");
   // load font
   font = loadFont("assets/MIXTMK_T.ttf");
 }
@@ -69,36 +64,36 @@ function setup() {
   );
   sideA = !sideButton.getState();
   // create imgButtons
+  songControls[0] = new ImageButton(
+    controlImg[0],
+    cassetteX - cassetteImg.width * scale * 0.2,
+    cassetteY + cassetteImg.height * scale * 0.35,
+    controlImg[0].width * scale * 0.165,
+    controlImg[0].height * scale * 0.165
+  );
 
-  // rwdButton = new ImageButton(
-  //   controlImg[0],
-  //   420,
-  //   560,
-  //   rewindImg.width / 6,
-  //   rewindImg.height / 6
-  // );
-  // stopButton = new ImageButton(
-  //   controlImg[1],
-  //   510,
-  //   560,
-  //   stopImg.width / 6,
-  //   stopImg.height / 6
-  // );
-  // playButton = new ImageButton(
-  //   controlImg[2],
-  //   590,
-  //   560,
-  //   playImg.width / 6,
-  //   playImg.height / 6,
-  //   play
-  // );
-  // fwdButton = new ImageButton(
-  //   controlImg[3],
-  //   680,
-  //   560,
-  //   fwdImg.width / 6,
-  //   fwdImg.height / 6
-  // );
+  songControls[1] = new ImageButton(
+    controlImg[1],
+    cassetteX - cassetteImg.width * scale * 0.06,
+    cassetteY + cassetteImg.height * scale * 0.35,
+    controlImg[1].width * scale * 0.165,
+    controlImg[1].height * scale * 0.165
+  );
+  songControls[2] = new ImageButton(
+    controlImg[2],
+    cassetteX + cassetteImg.width * scale * 0.06,
+    cassetteY + cassetteImg.height * scale * 0.35,
+    controlImg[2].width * scale * 0.165,
+    controlImg[2].height * scale * 0.165,
+    play
+  );
+  songControls[3] = new ImageButton(
+    controlImg[3],
+    cassetteX + cassetteImg.width * scale * 0.2,
+    cassetteY + cassetteImg.height * scale * 0.35,
+    controlImg[3].width * scale * 0.165,
+    controlImg[3].height * scale * 0.165
+  );
 }
 
 function draw() {
@@ -108,9 +103,10 @@ function draw() {
   textSize(20); //print moues coordinates
   textFont("Helvetica");
   text(position, 50, 50);
+  // display reels
   lReel.display(0.5);
   rReel.display(0.5);
-
+  // display cassette
   image(
     cassetteImg,
     cassetteX,
@@ -121,13 +117,19 @@ function draw() {
   textSize(40 * scale);
   fill(120);
   textFont(font);
+  // print song name
   text(
     "sample text",
     cassetteX - cassetteImg.width * scale * 0.25,
     cassetteY - cassetteImg.height * scale * 0.33
   );
+  // display side button
   sideButton.display();
   drawCassetteSide();
+  // display 4 control buttons
+  for (let i = 0; i < songControls.length; i++) {
+    songControls[i].display();
+  }
 }
 
 function mousePressed() {

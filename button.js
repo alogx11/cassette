@@ -49,12 +49,13 @@ class Button {
 }
 
 class ImageButton extends Button {
-  constructor(image, x, y, w, h, handler) {
-    super(x, y, w, h, handler);
+  constructor(image, x, y, w, h, scale, handler) {
+    super(x, y, w, scale, handler);
+    this.height = h;
     this.image = image;
   }
 
   display() {
-    image(this.image, this.x, this.y, this.w, this.h);
+    image(this.image, this.x, this.y, this.width, this.height);
   }
 }
