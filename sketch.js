@@ -64,6 +64,7 @@ function setup() {
   );
   sideA = !sideButton.getState();
   // create imgButtons
+  // rewind
   songControls[0] = new ImageButton(
     controlImg[0],
     cassetteX - cassetteImg.width * scale * 0.2,
@@ -71,7 +72,7 @@ function setup() {
     controlImg[0].width * scale * 0.165,
     controlImg[0].height * scale * 0.165
   );
-
+  // stop
   songControls[1] = new ImageButton(
     controlImg[1],
     cassetteX - cassetteImg.width * scale * 0.06,
@@ -79,6 +80,7 @@ function setup() {
     controlImg[1].width * scale * 0.165,
     controlImg[1].height * scale * 0.165
   );
+  // play
   songControls[2] = new ImageButton(
     controlImg[2],
     cassetteX + cassetteImg.width * scale * 0.06,
@@ -87,6 +89,7 @@ function setup() {
     controlImg[2].height * scale * 0.165,
     play
   );
+  // forward
   songControls[3] = new ImageButton(
     controlImg[3],
     cassetteX + cassetteImg.width * scale * 0.2,
@@ -134,4 +137,7 @@ function draw() {
 
 function mousePressed() {
   sideButton.isToggled();
+  for (let i = 0; i < songControls.length; i++) {
+    songControls[i].isToggled();
+  }
 }

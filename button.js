@@ -35,7 +35,6 @@ class Button {
   }
 
   getState() {
-    print(this.toggled);
     return this.toggled;
   }
 
@@ -53,6 +52,8 @@ class ImageButton extends Button {
     super(x, y, w, scale, handler);
     this.height = h;
     this.image = image;
+    this.handler = handler;
+    print(handler);
   }
 
   display() {

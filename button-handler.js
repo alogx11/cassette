@@ -19,7 +19,8 @@ function drawCassetteSide() {
 
 // function passed into play button when pressed.
 function play() {
-  if (!song.isPlaying()) {
-    song.play();
+  if (!songA.isPlaying()) {
+    print("playing");
+    songA.play();
   }
 }
