@@ -70,7 +70,8 @@ function setup() {
     cassetteX - cassetteImg.width * scale * 0.2,
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[0].width * scale * 0.165,
-    controlImg[0].height * scale * 0.165
+    controlImg[0].height * scale * 0.165,
+    scale
   );
   // stop
   songControls[1] = new ImageButton(
@@ -78,7 +79,8 @@ function setup() {
     cassetteX - cassetteImg.width * scale * 0.06,
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[1].width * scale * 0.165,
-    controlImg[1].height * scale * 0.165
+    controlImg[1].height * scale * 0.165,
+    scale
   );
   // play
   songControls[2] = new ImageButton(
@@ -87,6 +89,7 @@ function setup() {
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[2].width * scale * 0.165,
     controlImg[2].height * scale * 0.165,
+    scale,
     play
   );
   // forward
@@ -95,7 +98,8 @@ function setup() {
     cassetteX + cassetteImg.width * scale * 0.2,
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[3].width * scale * 0.165,
-    controlImg[3].height * scale * 0.165
+    controlImg[3].height * scale * 0.165,
+    scale
   );
 }
 

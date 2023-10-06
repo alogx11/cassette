@@ -6,6 +6,7 @@ class Button {
     this.height = this.width * 0.9;
     this.scale = scale;
     this.toggled = false;
+    print(handler);
     this.handler = handler;
   }
 
@@ -48,12 +49,10 @@ class Button {
 }
 
 class ImageButton extends Button {
-  constructor(image, x, y, w, h, scale, handler) {
-    super(x, y, w, scale, handler);
-    this.height = h;
+  constructor(image, x, y, width, height, scale, handler) {
+    super(x, y, width, scale, handler);
+    this.height = height;
     this.image = image;
-    this.handler = handler;
-    print(handler);
   }
 
   display() {
