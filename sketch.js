@@ -7,7 +7,6 @@ let font;
 let sideButton;
 let cassetteX, cassetteY;
 let lReel, rReel;
-let sideA;
 let songControls = new Array(4);
 let controlImg = new Array(4);
 let circleButtons = new Array(3);
@@ -38,12 +37,11 @@ function setup() {
   cassetteY = windowHeight / 2;
   print(cassetteX + " " + cassetteY);
   // create side button
-  sideButton = new Button(
+  sideButton = new SideButton(
     cassetteX - cassetteImg.width * scale * 0.394,
     cassetteY + cassetteImg.height * scale * 0.126,
     cassetteImg.width * scale * 0.08,
-    scale,
-    flipSide
+    scale
   );
   // create real objects
   lReel = new Reel(
@@ -64,7 +62,7 @@ function setup() {
     cassetteImg.height,
     false
   );
-  sideA = !sideButton.getState();
+
   // create imgButtons
   // rewind
   songControls[0] = new ImageButton(
@@ -73,7 +71,8 @@ function setup() {
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[0].width * scale * 0.165,
     controlImg[0].height * scale * 0.165,
-    scale
+    scale,
+    rewind
   );
   // stop
   songControls[1] = new ImageButton(
@@ -82,7 +81,8 @@ function setup() {
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[1].width * scale * 0.165,
     controlImg[1].height * scale * 0.165,
-    scale
+    scale,
+    stop
   );
   // play
   songControls[2] = new ImageButton(
@@ -101,6 +101,25 @@ function setup() {
     cassetteY + cassetteImg.height * scale * 0.35,
     controlImg[3].width * scale * 0.165,
     controlImg[3].height * scale * 0.165,
+    scale,
+    forward
+  );
+  circleButtons[0] = new CircleButton(
+    cassetteX - cassetteImg.width * scale * 0.03,
+    cassetteY + cassetteImg.width * scale * 0.022,
+    cassetteImg.width * scale * 0.02,
+    scale
+  );
+  circleButtons[1] = new CircleButton(
+    cassetteX,
+    cassetteY + cassetteImg.width * scale * 0.022,
+    cassetteImg.width * scale * 0.02,
+    scale
+  );
+  circleButtons[2] = new CircleButton(
+    cassetteX + cassetteImg.width * scale * 0.03,
+    cassetteY + cassetteImg.width * scale * 0.022,
+    cassetteImg.width * scale * 0.02,
     scale
   );
 }
@@ -134,16 +153,30 @@ function draw() {
   );
   // display side button
   sideButton.display();
-  drawCassetteSide();
   // display 4 control buttons
   for (let i = 0; i < songControls.length; i++) {
     songControls[i].display();
   }
+  //   songControls.forEach(function (element) {
+  //     element.display();
+  //   });
+  for (let i = 0; i < circleButtons.length; i++) {
+    circleButtons[i].display();
+  }
 }
 
 function mousePressed() {
-  sideButton.isToggled();
+  if (sideButton.isToggled()) {
+    sideButton.handleIt();
+  }
   for (let i = 0; i < songControls.length; i++) {
-    songControls[i].isToggled();
+    if (songControls[i].isToggled()) {
+      sideButton.handleIt;
+    }
+  }
+  for (let i = 0; i < circleButtons.length; i++) {
+    if (circleButtons[i].isToggled()) {
+      circleButtons.handleIt;
+    }
   }
 }

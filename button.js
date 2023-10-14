@@ -6,7 +6,6 @@ class Button {
     this.height = this.width * 0.9;
     this.scale = scale;
     this.toggled = false;
-    print(handler);
     this.handler = handler;
   }
 
@@ -16,6 +15,11 @@ class Button {
     strokeWeight(6 * this.scale);
     stroke(255);
     noFill();
+    // if (this.toggled) {
+    //   fill(255);
+    // } else {
+    //   noFill();
+    // }
     rect(this.x, this.y, this.width, this.height);
     pop();
   }
@@ -27,12 +31,15 @@ class Button {
     ) {
       print("toggle !");
       this.toggled = !this.toggled;
-      if (this.handler) {
-        // check if we have a handler function.
-        this.handler(); // perform button function
-      }
+      return true;
     }
-    return this.toggled;
+    return false;
+  }
+
+  handleIt() {
+    if (this.handler) {
+      this.handler;
+    }
   }
 
   getState() {
@@ -61,14 +68,35 @@ class ImageButton extends Button {
 }
 
 class CircleButton extends Button {
+  constructor(x, y, width, scale, handler) {
+    super(x, y, width, scale, handler);
+  }
+
   display() {
     strokeWeight(4);
     stroke(255);
-    if (this.state) {
+    if (this.toggled) {
       fill(255);
     } else {
       noFill();
     }
-    ellipse(this.x, this.y, this.w, this.h);
+    ellipse(this.x, this.y, this.width, this.width);
+  }
+}
+
+class SideButton extends Button {
+  constructor(x, y, width, scale, handler) {
+    super(x, y, width, scale, handler);
+  }
+
+  display() {
+    super.display();
+    noFill();
+    textSize(50 * scale);
+    textAlign(CENTER);
+    textFont("Helvetica");
+    fill(255);
+    let side = !this.toggled ? "A" : "B";
+    text(side, this.x, this.y + cassetteImg.height * scale * 0.03);
   }
 }
