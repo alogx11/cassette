@@ -14,6 +14,7 @@ let songControls = new Array(4);
 let controlImg = new Array(4);
 let circleButtons = new Array(3);
 let labelButtons = new Array(3);
+let spinSpeed;
 
 function preload() {
   // load songs
@@ -36,12 +37,14 @@ function setup() {
   background(0);
   rectMode(CENTER);
   imageMode(CENTER);
-  print(index);
+  // index for the song. randomly choose starting song
   index = Math.floor(Math.random() * 2);
   names = ["From the Start", "You Know What I Need"];
   song = songs[index];
   songName = names[index];
-  //duration = song.duration;
+  // rate the reels spin
+  spinSpeed = 0.5;
+  // center of cassette
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
   print(cassetteX + " " + cassetteY);
@@ -165,8 +168,13 @@ function draw() {
   textFont("Helvetica");
   text(position, 50, 50);
   // display reels
-  lReel.display(0.5);
-  rReel.display(0.5);
+  if (!song.isPlaying()) {
+    spinSpeed = 0;
+  } else {
+    spinSpeed - 0.5;
+  }
+  lReel.display(spinSpeed);
+  rReel.display(spinSpeed);
   // display cassette
   image(
     cassetteImg,

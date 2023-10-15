@@ -21,17 +21,19 @@ function forward() {
     } else {
       song.jump(song.currentTime() + 10);
     }
+    spinSpeed = 10;
   }
 }
 
 function rewind() {
   if (song.isPlaying()) {
-    print("forward");
+    print(song.currentTime() - 10);
     if (song.currentTime() - 10 <= 0) {
       song.jump(0);
     } else {
-      song.jump(song.currentTime - 10);
+      song.jump(song.currentTime() - 10);
     }
+    spinSpeed = -10;
   }
 }
 

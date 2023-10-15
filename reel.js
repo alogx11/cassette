@@ -16,7 +16,14 @@ class Reel {
   display(increment) {
     this.displayMagTape();
     this.displayReel();
-    this.angle += increment;
+    if (increment != null) {
+      if (sideButton.getState()) {
+        increment *= -1;
+      }
+      this.angle += increment;
+    } else {
+      this.angle += 0.5;
+    }
   }
 
   displayMagTape() {
