@@ -1,6 +1,9 @@
 ﻿const scale = 1;
 
-let songA;
+let song;
+let songs = new Array(2);
+let songName;
+let names = new Array(2);
 let duration;
 let cassetteImg, reelImg;
 let font;
@@ -14,7 +17,8 @@ let labelButtons = new Array(3);
 
 function preload() {
   // load songs
-  songA = loadSound("assets/From-the-Start.mp3");
+  songs[0] = loadSound("assets/From-the-Start.mp3");
+  songs[1] = loadSound("assets/You-Know-What-I-Need.mp3");
   // load cassette assets
   cassetteImg = loadImage("assets/cassette.png");
   reelImg = loadImage("assets/wheelorange.png");
@@ -32,7 +36,11 @@ function setup() {
   background(0);
   rectMode(CENTER);
   imageMode(CENTER);
-  duration = songA.duration;
+  let randomI = Math.floor(Math.random() * 2);
+  names = ["From the Start", "You Know What I Need"];
+  song = songs[randomI];
+  songName = names[randomI];
+  //duration = song.duration;
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
   print(cassetteX + " " + cassetteY);
@@ -151,6 +159,7 @@ function draw() {
   let position = mouseX + " " + mouseY;
   fill(0);
   textSize(20); //print moues coordinates
+  textAlign(LEFT);
   textFont("Helvetica");
   text(position, 50, 50);
   // display reels
@@ -169,8 +178,8 @@ function draw() {
   textFont(font);
   // print song name
   text(
-    "sample text",
-    cassetteX - cassetteImg.width * scale * 0.25,
+    songName,
+    cassetteX - cassetteImg.width * scale * 0.4,
     cassetteY - cassetteImg.height * scale * 0.33
   );
   // display side button

@@ -23,7 +23,7 @@ class Reel {
     // tape circle
     fill(0);
     let tempW;
-    tempW = map(songA.currentTime(), this.minW, this.maxW, 0, songA.duration());
+    tempW = map(song.currentTime(), this.minW, this.maxW, 0, song.duration());
     // print(tempW);
     ellipse(this.x, this.y, this.maxW, this.maxW);
     // white circle in the middle of tape

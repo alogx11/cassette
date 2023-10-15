@@ -1,29 +1,30 @@
 // function passed into play button when pressed.
 function play() {
-  print(songA);
-  if (!songA.isPlaying()) {
+  if (!song.isPlaying()) {
     print("playing");
-    songA.play();
+    song.play();
   }
 }
 
 function stop() {
-  if (songA.isPlaying()) {
+  if (song.isPlaying()) {
     print("stopping");
-    songA.pause();
+    song.pause();
   }
 }
 
 function forward() {
-  if (songA.isPlaying()) {
+  if (song.isPlaying()) {
     print("forward");
     //songA.rate(2);
   }
 }
 
 function rewind() {
-  if (songA.isPlaying()) {
+  if (song.isPlaying()) {
     print("forward");
     // songA.rate(-2);
   }
 }
+
+function flip() {}

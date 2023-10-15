@@ -88,18 +88,16 @@ class LabelButton extends CircleButton {
   constructor(x, y, width, scale, label, handler) {
     super(x, y, width, scale, handler);
     this.label = label;
-    print(label);
-    print(this.label);
   }
 
   display() {
     super.display();
     noStroke();
     textSize(this.width + scale * this.width * 0.4);
-    textAlign(CENTER);
+    textAlign(LEFT);
     textFont("Helvetica");
     fill(255);
-    text(this.label, this.x + this.width * 2.25, this.y + this.width / 2);
+    text(this.label, this.x + this.width, this.y + this.width / 2);
   }
 }
 
