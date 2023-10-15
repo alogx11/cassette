@@ -1,5 +1,5 @@
 ﻿const scale = 1;
-
+let index;
 let song;
 let songs = new Array(2);
 let songName;
@@ -36,10 +36,11 @@ function setup() {
   background(0);
   rectMode(CENTER);
   imageMode(CENTER);
-  let randomI = Math.floor(Math.random() * 2);
+  print(index);
+  index = Math.floor(Math.random() * 2);
   names = ["From the Start", "You Know What I Need"];
-  song = songs[randomI];
-  songName = names[randomI];
+  song = songs[index];
+  songName = names[index];
   //duration = song.duration;
   cassetteX = windowWidth / 2;
   cassetteY = windowHeight / 2;
@@ -49,7 +50,8 @@ function setup() {
     cassetteX - cassetteImg.width * scale * 0.394,
     cassetteY + cassetteImg.height * scale * 0.126,
     cassetteImg.width * scale * 0.08,
-    scale
+    scale,
+    flip
   );
   // create real objects
   lReel = new Reel(

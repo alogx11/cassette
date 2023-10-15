@@ -16,15 +16,31 @@ function stop() {
 function forward() {
   if (song.isPlaying()) {
     print("forward");
-    //songA.rate(2);
+    if (song.currentTime() + 10 >= song.duration()) {
+      song.jump(song.duration() - song.currentTime());
+    } else {
+      song.jump(song.currentTime() + 10);
+    }
   }
 }
 
 function rewind() {
   if (song.isPlaying()) {
     print("forward");
-    // songA.rate(-2);
+    if (song.currentTime() - 10 <= 0) {
+      song.jump(0);
+    } else {
+      song.jump(song.currentTime - 10);
+    }
   }
 }
 
-function flip() {}
+function flip() {
+  if (song.isPlaying()) {
+    song.pause();
+  }
+  print(index);
+  index = Math.abs(index - 1);
+  song = songs[index];
+  songName = names[index];
+}
