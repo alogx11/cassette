@@ -124,11 +124,25 @@ function setup() {
   );
 
   labelButtons[0] = new LabelButton(
-    cassetteX + cassetteImg.width * scale * 0.3,
-    cassetteY + cassetteImg.width * scale * 0.03,
+    cassetteX + cassetteImg.width * scale * 0.35,
+    cassetteY + cassetteImg.width * scale * 0.17,
     cassetteImg.width * scale * 0.02,
     scale,
-    "hello"
+    "hiss"
+  );
+  labelButtons[1] = new LabelButton(
+    cassetteX + cassetteImg.width * scale * 0.35,
+    cassetteY + cassetteImg.width * scale * 0.2,
+    cassetteImg.width * scale * 0.02,
+    scale,
+    "lofi"
+  );
+  labelButtons[2] = new LabelButton(
+    cassetteX + cassetteImg.width * scale * 0.35,
+    cassetteY + cassetteImg.width * scale * 0.23,
+    cassetteImg.width * scale * 0.02,
+    scale,
+    "wobble"
   );
 }
 
@@ -172,7 +186,9 @@ function draw() {
     circleButtons[i].display();
   }
 
-  labelButtons[0].display();
+  for (let i = 0; i < labelButtons.length; i++) {
+    labelButtons[i].display();
+  }
 }
 
 function mousePressed() {
@@ -191,8 +207,8 @@ function mousePressed() {
     }
   }
   for (let i = 0; i < labelButtons.length; i++) {
-    if (labelButtons[0].isToggled()) {
-      labelButtons[0].handleIt();
+    if (labelButtons[i].isToggled()) {
+      labelButtons[i].handleIt();
     }
   }
 }
