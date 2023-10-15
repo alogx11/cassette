@@ -38,7 +38,7 @@ class Button {
 
   handleIt() {
     if (this.handler) {
-      this.handler;
+      this.handler();
     }
   }
 
@@ -81,6 +81,25 @@ class CircleButton extends Button {
       noFill();
     }
     ellipse(this.x, this.y, this.width, this.width);
+  }
+}
+
+class LabelButton extends CircleButton {
+  constructor(x, y, width, scale, label, handler) {
+    super(x, y, width, scale, handler);
+    this.label = label;
+    print(label);
+    print(this.label);
+  }
+
+  display() {
+    super.display();
+    noStroke();
+    textSize(this.width);
+    textAlign(CENTER);
+    textFont("Helvetica");
+    fill(255);
+    text(this.label, this.x + this.width * 2, this.y + this.width / 4);
   }
 }
 

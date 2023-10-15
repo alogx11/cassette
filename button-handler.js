@@ -1,5 +1,6 @@
 // function passed into play button when pressed.
 function play() {
+  print(songA);
   if (!songA.isPlaying()) {
     print("playing");
     songA.play();
@@ -16,13 +17,13 @@ function stop() {
 function forward() {
   if (songA.isPlaying()) {
     print("forward");
-    songA.rate(2);
+    //songA.rate(2);
   }
 }
 
 function rewind() {
   if (songA.isPlaying()) {
     print("forward");
-    songA.rate(-2);
+    // songA.rate(-2);
   }
 }

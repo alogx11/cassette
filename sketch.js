@@ -10,7 +10,7 @@ let lReel, rReel;
 let songControls = new Array(4);
 let controlImg = new Array(4);
 let circleButtons = new Array(3);
-let labeledButtons = new Array(3);
+let labelButtons = new Array(3);
 
 function preload() {
   // load songs
@@ -122,6 +122,14 @@ function setup() {
     cassetteImg.width * scale * 0.02,
     scale
   );
+
+  labelButtons[0] = new LabelButton(
+    cassetteX + cassetteImg.width * scale * 0.3,
+    cassetteY + cassetteImg.width * scale * 0.03,
+    cassetteImg.width * scale * 0.02,
+    scale,
+    "hello"
+  );
 }
 
 function draw() {
@@ -163,20 +171,28 @@ function draw() {
   for (let i = 0; i < circleButtons.length; i++) {
     circleButtons[i].display();
   }
+
+  labelButtons[0].display();
 }
 
 function mousePressed() {
   if (sideButton.isToggled()) {
     sideButton.handleIt();
   }
+
   for (let i = 0; i < songControls.length; i++) {
     if (songControls[i].isToggled()) {
-      sideButton.handleIt;
+      songControls[i].handleIt();
     }
   }
   for (let i = 0; i < circleButtons.length; i++) {
     if (circleButtons[i].isToggled()) {
-      circleButtons.handleIt;
+      circleButtons[i].handleIt();
+    }
+  }
+  for (let i = 0; i < labelButtons.length; i++) {
+    if (labelButtons[0].isToggled()) {
+      labelButtons[0].handleIt();
     }
   }
 }
