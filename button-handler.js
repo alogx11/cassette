@@ -21,7 +21,8 @@ function forward() {
     } else {
       song.jump(song.currentTime() + 10);
     }
-    spinSpeed = 10;
+    rReel.display(10);
+    lReel.display(10);
   }
 }
 

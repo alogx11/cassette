@@ -171,7 +171,7 @@ function draw() {
   if (!song.isPlaying()) {
     spinSpeed = 0;
   } else {
-    spinSpeed - 0.5;
+    spinSpeed = 0.5;
   }
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
