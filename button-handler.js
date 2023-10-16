@@ -66,10 +66,29 @@ function flip() {
 }
 
 function playHiss() {
-  if (!hissSound.isPlaying()) {
-    hissSound.setLoop(true);
-    hissSound.play();
-  } else {
-    hissSound.pause();
+  if (song.isPlaying()) {
+    if (!hissSound.isPlaying()) {
+      hissSound.setLoop(true);
+      hissSound.play();
+      hiss = true;
+    } else {
+      hissSound.pause();
+      hiss = false;
+    }
   }
+  return hiss;
+}
+
+function playWobble() {
+  if (song.isPlaying()) {
+    wobble = !wobble;
+  }
+  return wobble;
+}
+
+function playLofi() {
+  if (song.isPlaying()) {
+    lofi = !lofi;
+  }
+  return lofi;
 }

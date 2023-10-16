@@ -18,6 +18,7 @@ let spinSpeed;
 let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
 let fowardSound;
 let hissSound;
+let hiss, wobble, lofi;
 
 function preload() {
   // load songs
@@ -43,6 +44,10 @@ function setup() {
   background(0);
   rectMode(CENTER);
   imageMode(CENTER);
+  // audio effects
+  hiss = false;
+  wobble = false;
+  lofi = false;
   // index for the song. randomly choose starting song
   index = Math.floor(Math.random() * 2);
   names = ["From the Start", "You Know What I Need"];
@@ -155,14 +160,17 @@ function setup() {
     cassetteY + cassetteImg.width * scale * 0.2,
     cassetteImg.width * scale * 0.02,
     scale,
-    "lofi"
+    "lofi",
+
+    playLofi
   );
   labelButtons[2] = new LabelButton(
     cassetteX + cassetteImg.width * scale * 0.35,
     cassetteY + cassetteImg.width * scale * 0.23,
     cassetteImg.width * scale * 0.02,
     scale,
-    "wobble"
+    "wobble",
+    playWobble
   );
 }
 
@@ -226,6 +234,15 @@ function draw() {
   for (let i = 0; i < labelButtons.length; i++) {
     labelButtons[i].display();
   }
+  if (wobble) {
+    print("wobble");
+  }
+  if (lofi) {
+    print("lofi");
+  }
+  if (hiss) {
+    print("hiss");
+  }
 }
 
 function mousePressed() {
@@ -245,7 +262,7 @@ function mousePressed() {
   }
   for (let i = 0; i < labelButtons.length; i++) {
     if (labelButtons[i].isToggled()) {
-      labelButtons[i].handleIt();
+      labelButtons[i].toggled = labelButtons[i].handleIt();
     }
   }
 }

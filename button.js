@@ -99,6 +99,12 @@ class LabelButton extends CircleButton {
     fill(255);
     text(this.label, this.x + this.width, this.y + this.width / 2);
   }
+
+  handleIt() {
+    if (this.handler) {
+      return this.handler();
+    }
+  }
 }
 
 class SideButton extends Button {
