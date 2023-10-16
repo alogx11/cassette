@@ -64,3 +64,12 @@ function flip() {
   song = songs[index];
   songName = names[index];
 }
+
+function playHiss() {
+  if (!hissSound.isPlaying()) {
+    hissSound.setLoop(true);
+    hissSound.play();
+  } else {
+    hissSound.pause();
+  }
+}

@@ -17,6 +17,7 @@ let labelButtons = new Array(3);
 let spinSpeed;
 let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
 let fowardSound;
+let hissSound;
 
 function preload() {
   // load songs
@@ -34,6 +35,7 @@ function preload() {
   font = loadFont("assets/MIXTMK_T.ttf");
   // rewind/fast forward sound
   fowardSound = loadSound("./assets/fastforward.mp3");
+  hissSound = loadSound("./assets/hiss.mp3");
 }
 
 function setup() {
@@ -145,7 +147,8 @@ function setup() {
     cassetteY + cassetteImg.width * scale * 0.17,
     cassetteImg.width * scale * 0.02,
     scale,
-    "hiss"
+    "hiss",
+    playHiss
   );
   labelButtons[1] = new LabelButton(
     cassetteX + cassetteImg.width * scale * 0.35,
