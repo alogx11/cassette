@@ -21,6 +21,7 @@ function forward() {
     song.pause();
     cassetteState = 3;
     setTimeout(stopForward, 2500);
+    fowardSound.play();
   }
 }
 
@@ -39,6 +40,7 @@ function rewind() {
     song.pause();
     cassetteState = 0;
     setTimeout(stopForward, 2500);
+    fowardSound.play();
   }
 }
 

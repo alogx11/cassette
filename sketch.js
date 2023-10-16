@@ -16,6 +16,7 @@ let circleButtons = new Array(3);
 let labelButtons = new Array(3);
 let spinSpeed;
 let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
+let fowardSound;
 
 function preload() {
   // load songs
@@ -31,6 +32,8 @@ function preload() {
   controlImg[3] = loadImage("assets/forwardbutton.png");
   // load font
   font = loadFont("assets/MIXTMK_T.ttf");
+  // rewind/fast forward sound
+  fowardSound = loadSound("./assets/fastforward.mp3");
 }
 
 function setup() {
