@@ -63,6 +63,8 @@ function flip() {
   index = Math.abs(index - 1);
   song = songs[index];
   songName = names[index];
+  rReel.flipReel();
+  lReel.flipReel();
 }
 
 function playHiss() {
