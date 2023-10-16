@@ -15,6 +15,7 @@ let controlImg = new Array(4);
 let circleButtons = new Array(3);
 let labelButtons = new Array(3);
 let spinSpeed;
+let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
 
 function preload() {
   // load songs
@@ -168,10 +169,21 @@ function draw() {
   textFont("Helvetica");
   text(position, 50, 50);
   // display reels
-  if (!song.isPlaying()) {
-    spinSpeed = 0;
-  } else {
-    spinSpeed = 0.5;
+  switch (cassetteState) {
+    case 0:
+      spinSpeed = -10;
+      break;
+    case 1:
+      spinSpeed = 0;
+      break;
+    case 2:
+      spinSpeed = 0.5;
+      break;
+    case 3:
+      spinSpeed = 10;
+      break;
+    default:
+      spinSpeed = 0;
   }
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
