@@ -37,8 +37,15 @@ class Reel {
     ellipse(this.x, this.y, tempW, tempW);
     // white circle in the middle of tape
     fill(255);
+    let val = 0;
+    if (wobble) {
+      let wobbleVal = noise(wobbleNoise + random(0, 10));
+      val = map(wobbleVal, 0, 1, -0.3, 0.3);
+    } else {
+      val = 0;
+    }
     ellipse(
-      this.x,
+      this.x + val,
       this.y,
       this.reelImg.width * this.scale,
       this.reelImg.width * this.scale

@@ -13,7 +13,7 @@ let lReel, rReel;
 let songControls = new Array(4);
 let controlImg = new Array(4);
 let circleButtons = new Array(3);
-let labelButtons = new Array(3);
+let labelButtons = new Array(3); // 0
 let spinSpeed;
 let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
 let fowardSound;
