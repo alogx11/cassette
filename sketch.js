@@ -20,6 +20,8 @@ let fowardSound;
 let hissSound;
 let hiss, wobble, lofi;
 
+const wobbleNoise = 1;
+
 function preload() {
   // load songs
   songs[0] = loadSound("assets/From-the-Start.mp3");

@@ -84,6 +84,11 @@ function playHiss() {
 function playWobble() {
   if (song.isPlaying()) {
     wobble = !wobble;
+    let wobble = noise(wobbleNoise);
+    let val = map(wobble, 0, 1, -0.3, 0.3);
+    song.rate(1 + val);
+  } else {
+    song.rate(1);
   }
   return wobble;
 }
