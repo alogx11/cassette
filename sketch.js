@@ -22,7 +22,7 @@ let hiss, wobble, lofi;
 let lofiFilter;
 let fft;
 
-const wobbleNoise = 1;
+let wobbleNoise = 1;
 
 function preload() {
   // load songs
@@ -259,7 +259,12 @@ function draw() {
     labelButtons[i].display();
   }
   if (wobble) {
-    print("wobble");
+    //labelButtons[2].handleIt();
+    let wobbleVal = noise(wobbleNoise);
+    let val = map(wobbleVal, 0, 1, -0.1, 0.1);
+    song.rate(1 + val);
+    wobbleNoise += 0.005;
+    print(song.rate());
   }
   if (lofi) {
     print("lofi");

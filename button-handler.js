@@ -96,9 +96,6 @@ function playHiss() {
 //play wobble effect
 function playWobble() {
   if (song.isPlaying() && !wobble) {
-    let wobbleVal = noise(wobbleNoise);
-    let val = map(wobbleVal, 0, 1, -0.3, 0.3);
-    song.rate(1 + val);
     wobble = true;
   } else {
     wobble = false;
@@ -175,3 +172,5 @@ function displaySpectrum() {
   }
   pop();
 }
+
+function myVisual() {}

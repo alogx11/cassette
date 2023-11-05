@@ -34,6 +34,17 @@ class Reel {
       tempW = 1 - tempW;
     }
     tempW = map(tempW, 0, 1, this.minW, this.maxW);
+    if (wobble) {
+      let wobbleVal;
+      if (this.left) {
+        wobbleVal = noise(wobbleNoise);
+      } else {
+        wobbleVal = noise(wobbleNoise + 100);
+      }
+      let val = map(wobbleVal, 0, 1, -10, 10);
+      // wobbleNoise is incrememted in draw when wobble is true
+      tempW += val;
+    }
     ellipse(this.x, this.y, tempW, tempW);
     // white circle in the middle of tape
     fill(255);
