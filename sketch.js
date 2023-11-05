@@ -19,6 +19,7 @@ let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
 let fowardSound;
 let hissSound;
 let hiss, wobble, lofi;
+let lofiFilter;
 
 const wobbleNoise = 1;
 
@@ -177,6 +178,12 @@ function setup() {
     "wobble",
     playWobble
   );
+  // lofi filter
+  lofiFiltter = new p5.LowPass();
+  songs[0].disconnect();
+  songs[1].disconnect();
+  songs[0].connect(lofiFilter);
+  songs[1].connect(lofiFilter);
 }
 
 function draw() {

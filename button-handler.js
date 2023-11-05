@@ -110,7 +110,9 @@ function playWobble() {
 // play lofi effect
 function playLofi() {
   if (song.isPlaying()) {
-    lofi = !lofi;
+    lofi = true;
+  } else {
+    lofi = false;
   }
   return lofi;
 }
