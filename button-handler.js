@@ -138,7 +138,8 @@ function displayWaveform() {
   let yMin = cassetteY - scale * cassetteImg.height * 0.163;
   let yMax = cassetteY + scale * cassetteImg.height * 0.0095;
   strokeWeight(scale * 2);
-  stroke(255, 0, 0);
+  colorMode(HSB, 255);
+  stroke(0, 255, 255);
   noFill();
   beginShape();
   for (let i = 0; i < waveform.length; i++) {
@@ -173,4 +174,7 @@ function displaySpectrum() {
   pop();
 }
 
-function myVisual() {}
+function myVisual() {
+  lReel.giveStroke();
+  rReel.giveStroke();
+}

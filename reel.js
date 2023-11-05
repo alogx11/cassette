@@ -11,6 +11,9 @@ class Reel {
     this.angle = 0;
     this.maxW = this.reelImg.width * 3 * this.scale;
     this.minW = this.reelImg.width * 2 * this.scale;
+    this.setStroke = false;
+    this.hue = 0;
+    this.weight = scale * hue * 0.05;
   }
 
   display(increment) {
@@ -45,9 +48,16 @@ class Reel {
       // wobbleNoise is incrememted in draw when wobble is true
       tempW += val;
     }
+    push();
+    if (this.setStroke) {
+      colorMode(HSB, 255);
+      stroke(this.hue, 255, 255);
+      strokeWeight(this.weight);
+    }
     ellipse(this.x, this.y, tempW, tempW);
     // white circle in the middle of tape
     fill(255);
+    noStroke();
     let val = 0;
     if (wobble) {
       let wobbleVal = noise(wobbleNoise + random(0, 10));
@@ -61,6 +71,7 @@ class Reel {
       this.reelImg.width * this.scale,
       this.reelImg.width * this.scale
     );
+    pop();
   }
 
   displayReel() {
@@ -79,5 +90,21 @@ class Reel {
 
   flipReel() {
     this.left = !this.left;
+  }
+
+  giveStroke() {
+    if (song.isPlaying()) {
+      // we are only visualizing when song is playing
+      this.setStroke = true;
+      colorMode(HSB, 255);
+      fft.analyze();
+      //set hue and weight of stoke based on bass energy
+      this.hue = fft.getEnergy("bass");
+      this.weight = scale * this.hue * 0.05;
+    } else {
+      this.hue = 0;
+      this.weight = 0;
+      this.setStroke = false;
+    }
   }
 }

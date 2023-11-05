@@ -190,6 +190,14 @@ function setup() {
   lofiFilter.freq(21000);
   // initialize fft
   fft = new p5.FFT();
+  // my visualizer button
+  myButton = new CircleButton(
+    cassetteX,
+    cassetteY + cassetteImg.width * scale * 0.05,
+    cassetteImg.width * scale * 0.02,
+    scale,
+    myVisual
+  );
 }
 
 function draw() {
@@ -219,7 +227,7 @@ function draw() {
   }
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
-  // check if we are displaying circle buttons
+  // check if we are displaying circle button visual
   for (let i = 0; i < circleButtons.length; i++) {
     if (circleButtons[i].toggled) {
       circleButtons[i].handleIt();
@@ -272,11 +280,18 @@ function draw() {
   if (hiss) {
     print("hiss");
   }
+  myButton.display();
+  if (myButton.toggled) {
+    myButton.handleIt();
+  }
 }
 
 function mousePressed() {
   if (sideButton.isToggled()) {
     sideButton.handleIt();
+  }
+  if (myButton.isToggled()) {
+    myButton.handleIt();
   }
 
   for (let i = 0; i < songControls.length; i++) {
