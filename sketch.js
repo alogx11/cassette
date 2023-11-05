@@ -179,11 +179,12 @@ function setup() {
     playWobble
   );
   // lofi filter
-  lofiFiltter = new p5.LowPass();
+  lofiFilter = new p5.LowPass();
   songs[0].disconnect();
   songs[1].disconnect();
   songs[0].connect(lofiFilter);
   songs[1].connect(lofiFilter);
+  lofiFilter.freq(21000);
 }
 
 function draw() {

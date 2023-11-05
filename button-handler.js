@@ -109,9 +109,11 @@ function playWobble() {
 
 // play lofi effect
 function playLofi() {
-  if (song.isPlaying()) {
+  if (song.isPlaying() && !lofi) {
+    lofiFilter.freq(2200);
     lofi = true;
   } else {
+    lofiFilter.freq(21000);
     lofi = false;
   }
   return lofi;
