@@ -130,3 +130,48 @@ function displayLofiGirl() {
     lofiGirl.height * scale * cassetteImg.width * 0.00045
   );
 }
+
+function displayWaveform() {
+  push();
+  let waveform = fft.waveform();
+  // left and rightmost positions of box
+  let xMin = cassetteX - scale * cassetteImg.width * 0.095;
+  let xMax = cassetteX + scale * cassetteImg.width * 0.095;
+  // min and max values of waveform
+  let yMin = cassetteY - scale * cassetteImg.height * 0.163;
+  let yMax = cassetteY + scale * cassetteImg.height * 0.0095;
+  strokeWeight(scale * 2);
+  stroke(255, 0, 0);
+  noFill();
+  beginShape();
+  for (let i = 0; i < waveform.length; i++) {
+    let x = map(i, 0, waveform.length, xMin, xMax);
+    let y = map(waveform[i], -1, 1, yMin, yMax);
+    vertex(x, y);
+  }
+  endShape();
+  pop();
+}
+
+function displaySpectrum() {
+  push();
+  let spectrum = fft.analyze();
+  // left and rightmost positions of box
+  let xMin = cassetteX - scale * cassetteImg.width * 0.095;
+  let xMax = cassetteX + scale * cassetteImg.width * 0.095;
+  // min and max values of waveform
+  let yMin = cassetteY - scale * cassetteImg.height * 0.163;
+  let yMax = cassetteY + scale * cassetteImg.height * 0.0095;
+  let y = cassetteY - cassetteImg.height * 0.077 * scale;
+  noStroke();
+  fill(0, 255, 0);
+  for (let i = 0; i < spectrum.length; i++) {
+    // fill(spectrum[i].toString(16));
+    colorMode(HSB, 255);
+    fill(spectrum[i], 255, 255);
+    let x = map(i, 0, spectrum.length, xMin, xMax);
+    let h = map(spectrum[i], 0, 255, yMax, yMin) - yMax * scale;
+    rect(x, y, (xMax - xMin) / spectrum.length, h);
+  }
+  pop();
+}

@@ -20,6 +20,7 @@ let fowardSound;
 let hissSound;
 let hiss, wobble, lofi;
 let lofiFilter;
+let fft;
 
 const wobbleNoise = 1;
 
@@ -144,13 +145,15 @@ function setup() {
     cassetteX,
     cassetteY + cassetteImg.width * scale * 0.022,
     cassetteImg.width * scale * 0.02,
-    scale
+    scale,
+    displaySpectrum
   );
   circleButtons[2] = new CircleButton(
     cassetteX + cassetteImg.width * scale * 0.03,
     cassetteY + cassetteImg.width * scale * 0.022,
     cassetteImg.width * scale * 0.02,
-    scale
+    scale,
+    displayWaveform
   );
 
   labelButtons[0] = new LabelButton(
@@ -185,6 +188,8 @@ function setup() {
   songs[0].connect(lofiFilter);
   songs[1].connect(lofiFilter);
   lofiFilter.freq(21000);
+  // initialize fft
+  fft = new p5.FFT();
 }
 
 function draw() {
@@ -214,9 +219,11 @@ function draw() {
   }
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
-  // check if we are displaying lofi girl
-  if (circleButtons[0].toggled) {
-    circleButtons[0].handleIt();
+  // check if we are displaying circle buttons
+  for (let i = 0; i < circleButtons.length; i++) {
+    if (circleButtons[i].toggled) {
+      circleButtons[i].handleIt();
+    }
   }
   // display cassette
   image(

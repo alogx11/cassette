@@ -73,7 +73,7 @@ class CircleButton extends Button {
   }
 
   display() {
-    strokeWeight(4);
+    strokeWeight(this.width * 0.25);
     stroke(255);
     if (this.toggled) {
       fill(255);
