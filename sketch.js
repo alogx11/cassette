@@ -5,7 +5,7 @@ let songs = new Array(2);
 let songName;
 let names = new Array(2);
 let duration;
-let cassetteImg, reelImg;
+let cassetteImg, reelImg, lofiGirl;
 let font;
 let sideButton;
 let cassetteX, cassetteY;
@@ -39,6 +39,8 @@ function preload() {
   // rewind/fast forward sound
   fowardSound = loadSound("./assets/fastforward.mp3");
   hissSound = loadSound("./assets/hiss.mp3");
+  //lofi girl
+  lofiGirl = loadImage("./assets/lofigirl.gif");
 }
 
 function setup() {
@@ -134,7 +136,8 @@ function setup() {
     cassetteX - cassetteImg.width * scale * 0.03,
     cassetteY + cassetteImg.width * scale * 0.022,
     cassetteImg.width * scale * 0.02,
-    scale
+    scale,
+    displayLofiGirl
   );
   circleButtons[1] = new CircleButton(
     cassetteX,
@@ -186,16 +189,16 @@ function draw() {
   text(position, 50, 50);
   // display reels
   switch (cassetteState) {
-    case 0:
+    case 0: // rewind
       spinSpeed = -10;
       break;
-    case 1:
+    case 1: // pause
       spinSpeed = 0;
       break;
-    case 2:
+    case 2: // play
       spinSpeed = 0.5;
       break;
-    case 3:
+    case 3: // forward
       spinSpeed = 10;
       break;
     default:
@@ -203,6 +206,10 @@ function draw() {
   }
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
+  // check if we are displaying lofi girl
+  if (circleButtons[0].toggled) {
+    circleButtons[0].handleIt();
+  }
   // display cassette
   image(
     cassetteImg,
