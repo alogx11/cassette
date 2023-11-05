@@ -49,6 +49,7 @@ class Reel {
       tempW += val;
     }
     push();
+    noStroke();
     if (this.setStroke) {
       colorMode(HSB, 255);
       stroke(this.hue, 255, 255);
@@ -57,7 +58,6 @@ class Reel {
     ellipse(this.x, this.y, tempW, tempW);
     // white circle in the middle of tape
     fill(255);
-    noStroke();
     let val = 0;
     if (wobble) {
       let wobbleVal = noise(wobbleNoise + random(0, 10));
@@ -93,7 +93,7 @@ class Reel {
   }
 
   giveStroke() {
-    if (song.isPlaying()) {
+    if (song.isPlaying() && myButton.toggled) {
       // we are only visualizing when song is playing
       this.setStroke = true;
       colorMode(HSB, 255);

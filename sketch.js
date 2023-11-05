@@ -21,6 +21,7 @@ let hissSound;
 let hiss, wobble, lofi;
 let lofiFilter;
 let fft;
+let myButton;
 
 let wobbleNoise = 1;
 
@@ -134,6 +135,7 @@ function setup() {
     scale,
     forward
   );
+  // lofi girl
   circleButtons[0] = new CircleButton(
     cassetteX - cassetteImg.width * scale * 0.03,
     cassetteY + cassetteImg.width * scale * 0.022,
@@ -141,6 +143,7 @@ function setup() {
     scale,
     displayLofiGirl
   );
+  // spectrum wave
   circleButtons[1] = new CircleButton(
     cassetteX,
     cassetteY + cassetteImg.width * scale * 0.022,
@@ -148,6 +151,7 @@ function setup() {
     scale,
     displaySpectrum
   );
+  // wave form
   circleButtons[2] = new CircleButton(
     cassetteX + cassetteImg.width * scale * 0.03,
     cassetteY + cassetteImg.width * scale * 0.022,
@@ -155,7 +159,7 @@ function setup() {
     scale,
     displayWaveform
   );
-
+  // hiss button
   labelButtons[0] = new LabelButton(
     cassetteX + cassetteImg.width * scale * 0.35,
     cassetteY + cassetteImg.width * scale * 0.17,
@@ -164,6 +168,7 @@ function setup() {
     "hiss",
     playHiss
   );
+  // lofi button
   labelButtons[1] = new LabelButton(
     cassetteX + cassetteImg.width * scale * 0.35,
     cassetteY + cassetteImg.width * scale * 0.2,
@@ -173,6 +178,7 @@ function setup() {
 
     playLofi
   );
+  // wobble
   labelButtons[2] = new LabelButton(
     cassetteX + cassetteImg.width * scale * 0.35,
     cassetteY + cassetteImg.width * scale * 0.23,
@@ -202,12 +208,7 @@ function setup() {
 
 function draw() {
   background(255);
-  let position = mouseX + " " + mouseY;
-  fill(0);
-  textSize(20); //print moues coordinates
-  textAlign(LEFT);
-  textFont("Helvetica");
-  text(position, 50, 50);
+  noStroke();
   // display reels
   switch (cassetteState) {
     case 0: // rewind
