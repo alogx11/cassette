@@ -4,13 +4,14 @@ class Reel {
     this.reelImg = reelImg;
     this.scale = scale;
     this.x = x;
-    this.left
+    this.left // boolean controls how tape appears if it is the left or right.
       ? (this.x -= cassetteW * 0.21 * scale)
       : (this.x += cassetteW * 0.21 * scale);
     this.y = y - cassetteH * 0.077 * scale;
     this.angle = 0;
-    this.maxW = this.reelImg.width * 3 * this.scale;
-    this.minW = this.reelImg.width * 2 * this.scale;
+    this.maxW = this.reelImg.width * 3 * this.scale; // max width of tape
+    this.minW = this.reelImg.width * 2 * this.scale; // min width of tape
+    // variables to control visual effect
     this.setStroke = false;
     this.hue = 0;
     this.weight = scale * hue * 0.05;
@@ -18,7 +19,6 @@ class Reel {
 
   /* displays the magtapes and the images of the reels
   param: increment - added to the angle of the reel to change speed of rotation.
-
   */
   display(increment) {
     this.displayMagTape();
@@ -82,7 +82,7 @@ class Reel {
     pop();
   }
 
-  // display image of the reel
+  /* display image of the reel */
   displayReel() {
     push();
     // set origin to x,y where the reel should be
@@ -100,12 +100,15 @@ class Reel {
     pop();
   }
 
-  // when the reel is flipped, left becomes right, right becomes left
+  /* when the reel is flipped, left becomes right, right becomes left */
   flipReel() {
     this.left = !this.left;
   }
 
-  // method called when myButton is toggled on
+  /*
+   method called when myButton is toggled on
+   creates values to give the tapes a strokeWeight and color when enabled based on the bass energy
+   */
   giveStroke() {
     if (song.isPlaying() && myButton.toggled) {
       // we are only visualizing when song is playing
