@@ -1,27 +1,26 @@
-﻿const scale = 1;
-let index;
-let song;
+﻿const scale = 1; // change scale for visuals
+let index; // index for song array
+let song; // song playing
 let songs = new Array(2);
-let songName;
+let songName; // name of song playing
 let names = new Array(2);
-let duration;
-let cassetteImg, reelImg, lofiGirl;
+let cassetteImg, reelImg, lofiGirl; // images
 let font;
-let sideButton;
-let cassetteX, cassetteY;
-let lReel, rReel;
-let songControls = new Array(4);
-let controlImg = new Array(4);
-let circleButtons = new Array(3);
-let labelButtons = new Array(3); // 0
-let spinSpeed;
+let sideButton; // button obj
+let cassetteX, cassetteY; //center x,y
+let lReel, rReel; //reel obj
+let songControls = new Array(4); // array of img buttons to cnotrol cassette
+let controlImg = new Array(4); // array of imgs used in display for img buttons
+let circleButtons = new Array(3); // array of cicle bittons
+let labelButtons = new Array(3); // array of label buttons
+let spinSpeed; // speed the reels spin
 let cassetteState; // 0 rewind, 1 pause, 2 play, 3 foward
-let fowardSound;
-let hissSound;
-let hiss, wobble, lofi;
-let lofiFilter;
-let fft;
-let myButton;
+let fowardSound; // sound played when forward/rewind clicked
+let hissSound; // his sound for hiss effect
+let hiss, wobble, lofi; // booleans used to control audio effects
+let lofiFilter; // filter used to create lofi effect
+let fft; // fft
+let myButton; // my visual button
 
 let wobbleNoise = 1;
 
@@ -209,7 +208,7 @@ function setup() {
 function draw() {
   background(255);
   noStroke();
-  // display reels
+  // check cassetteState and use to set speed of reels
   switch (cassetteState) {
     case 0: // rewind
       spinSpeed = -10;
@@ -226,6 +225,7 @@ function draw() {
     default:
       spinSpeed = 0;
   }
+  // dispaly reels, spinSpeed set by cassette state
   lReel.display(spinSpeed);
   rReel.display(spinSpeed);
   // check if we are displaying circle button visual
@@ -242,10 +242,10 @@ function draw() {
     cassetteImg.width * scale,
     cassetteImg.height * scale
   );
+  // print song name on cassette
   textSize(40 * scale);
   fill(120);
   textFont(font);
-  // print song name
   text(
     songName,
     cassetteX - cassetteImg.width * scale * 0.4,
@@ -257,13 +257,11 @@ function draw() {
   for (let i = 0; i < songControls.length; i++) {
     songControls[i].display();
   }
-  //   songControls.forEach(function (element) {
-  //     element.display();
-  //   });
+  // diaply circle buttons
   for (let i = 0; i < circleButtons.length; i++) {
     circleButtons[i].display();
   }
-
+  // display label buttons
   for (let i = 0; i < labelButtons.length; i++) {
     labelButtons[i].display();
   }
@@ -275,18 +273,23 @@ function draw() {
     wobbleNoise += 0.005;
     print(song.rate());
   }
+  /*
+  i didnt need this ifs but they were required for previous submission
+   */
   if (lofi) {
     print("lofi");
   }
   if (hiss) {
     print("hiss");
   }
+  // display for my visual button
   myButton.display();
   if (myButton.toggled) {
     myButton.handleIt();
   }
 }
 
+// check if a button was pressed. if pressed call handler to have button perform its function
 function mousePressed() {
   if (sideButton.isToggled()) {
     sideButton.handleIt();
